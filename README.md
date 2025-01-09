@@ -17,6 +17,33 @@ Make a clear list of features that work/dont work
 
 
 ## Adventurer Subclasses
-
-replace this with your documentation for your two Adventurer subclasses. If you modify or replace the provided CodeWarrior class, please provide documentation for that as well.
+# ~~CodeWarrior~~ Rogue Class
+- 75 Health Points
+- 10-15 Damage through Dagger (Thrust)
+- Support increases the chance of 
+- Special cuts through the opponent, dealing 75 damage (Shred)
+  - Special points are called **Apathy**
+  - Special takes up the max amount of Apathy (5 points)
+  - Apathy is incremented after every turn (after Rogue's support/attack used)
+  - Each increment of Apathy increases minimum & maximum damage by 3 points up to an addition of 15.
+# Guardian Class
+- 200 Health Points
+- 5-10 Damage through Shield (Ram)
+- Support makes Guardian more likely to get targeted by the opponent (Taunt)
+- Special targets one opponent with an increased % of damage dependent on remaining health left (Last Stand)
+  - Special points are called **Resolve**
+  - Special takes up the max amount of Resolve (5 points)
+  - Resolve is incremented after every turn (after Guardian's support/attack used)
+  - The base damage for this is 25 damage with an increment of up to 40 damage.
+  - There is a % chance that using this can rebound damage equivalent to the damage inflicted.
+# Cleric Class
+- 125 Health Points
+- 3-7 Damage through holy magic (Divine Spark)
+- Support heals half the percentage of the health lost through holy magic (Nature's Touch)
+  - Support does not apply to dead allies
+- Special heals one ally back to full health (Nature's Blessing)
+  - Special points are called **Grace**
+  - Special takes up the max amount of Grace (5 points)
+  - Grace is incremented after every turn (after Cleric's support/attack used)
+  - Special does not apply to dead allies
 
