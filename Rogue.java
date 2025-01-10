@@ -21,7 +21,7 @@ public class Rogue extends Adventurer{
   }
 
   public Rogue(){
-    this("Carmack");
+    this("Theo");
   }
 
   /*The next 8 methods are all required because they are abstract:*/
