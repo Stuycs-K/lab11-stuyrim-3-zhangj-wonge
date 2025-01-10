@@ -59,7 +59,7 @@ public class Rogue extends Adventurer{
   public String attack(Adventurer other){
     int damage = (int)(Math.random()* (DamageMax - DamageMin + 1))+DamageMin;
     other.applyDamage(damage);
-    setSpecial(getSpecial() + 1);
+    restoreSpecial(1);
     setDamageMax(getDamageMax() + 1);
     setDamageMin(getDamageMin() + 1);
     return this + " attacked "+ other + " and dealt "+ damage +
