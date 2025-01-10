@@ -39,6 +39,7 @@ Make a clear list of features that work/dont work
 # Cleric Class
 - 125 Health Points
 - 3-7 Damage through holy magic (Divine Spark)
+- Every time damage is done % chance of stunning the opponent
 - Support heals half the percentage of the health lost through holy magic (Nature's Touch)
   - Support does not apply to dead allies
 - Special heals one ally back to full health (Nature's Blessing)
