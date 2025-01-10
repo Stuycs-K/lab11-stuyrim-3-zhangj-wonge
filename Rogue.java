@@ -1,6 +1,5 @@
 public class Rogue extends Adventurer{
   int Apathy, ApathyMax, DamageMin, DamageMax;
-  String preferredLanguage;
 
   /*the other constructors ultimately call the constructor
   *with all parameters.*/
@@ -13,7 +12,7 @@ public class Rogue extends Adventurer{
   }
 
   public Rogue(String name, int hp){
-    this(name,hp);
+    this(name, hp, 10, 15);
   }
 
   public Rogue(String name){
@@ -41,13 +40,28 @@ public class Rogue extends Adventurer{
     return ApathyMax;
   }
 
+  public void setDamageMin(int n){
+    DamageMin = n;
+  }
+
+  public int getDamageMin(){
+    return DamageMin;
+  }
+
+  public void setDamageMax(int n){
+    DamageMax = n;
+  }
+
+  public int getDamageMax(){
+    return DamageMax;
+  }
   /*Deal 2-7 damage to opponent, restores 2 Apathy*/
   public String attack(Adventurer other){
     int damage = (int)(Math.random()* (DamageMax - DamageMin + 1))+DamageMin;
     other.applyDamage(damage);
-    Apathy += 1;
-    DamageMax += 3;
-    DamageMin += 3;
+    setSpecial(getSpecial() + 1);
+    setDamageMax(getDamageMax() + 1);
+    setDamageMin(getDamageMin() + 1);
     return this + " attacked "+ other + " and dealt "+ damage +
     " points of damage.";
   }
