@@ -17,13 +17,10 @@ public class Game{
 	for(int i = 1; i <= HEIGHT;i++){
 		for(int j =1; j<=WIDTH; j++){
 			if(i==1||i==HEIGHT){
-				Text.go(i,j);
-				System.out.print("1");
+				drawText("-", i, j);
 			}else if(i>1&&i<HEIGHT){
-				Text.go(i,1);
-				System.out.print("1");
-				Text.go(i,WIDTH);
-				System.out.print("1");
+				drawText("|",i,1);
+				drawText("|",i,WIDTH);
 			}
 		}
 	}
@@ -35,7 +32,7 @@ public class Game{
   //use this method in your other text drawing methods to make things simpler.
   public static void drawText(String s,int startRow, int startCol){
     /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
-	if(startRow>1 && startCol>1){
+	if(startRow>0 && startCol>0){
 		Text.go(startRow,startCol);
 		System.out.println(s);
 	}
@@ -54,7 +51,15 @@ public class Game{
   */
   public static void TextBox(int row, int col, int width, int height, String text){
     /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
-    //YOUR CODE HERE
+    String curr = text.substring(0,width);
+    int rowCount=1;
+    for(int i = 0; i<text.length(); i++){
+      if(rowCount<height){
+        drawText(curr,row,col);
+        curr=text.substring(width).substring(0,width);
+        rowCount++;
+      }
+    }
     /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
   }
 
