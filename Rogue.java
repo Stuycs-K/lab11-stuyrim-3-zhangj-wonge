@@ -1,13 +1,15 @@
 public class Rogue extends Adventurer{
-  int Apathy, ApathyMax;
+  int Apathy, ApathyMax, DamageMin, DamageMax;
   String preferredLanguage;
 
   /*the other constructors ultimately call the constructor
   *with all parameters.*/
-  public Rogue(String name, int hp,){
+  public Rogue(String name, int hp, int DamageMin, int DamageMax){
     super(name,hp);
     ApathyMax = 5;
     Apathy = 0;
+    DamageMin = 10;
+    DamageMax = 15;
   }
 
   public Rogue(String name, int hp){
@@ -19,7 +21,7 @@ public class Rogue extends Adventurer{
   }
 
   public Rogue(){
-    this("Carmack");
+    this("Theo");
   }
 
   /*The next 8 methods are all required because they are abstract:*/
@@ -41,9 +43,11 @@ public class Rogue extends Adventurer{
 
   /*Deal 2-7 damage to opponent, restores 2 Apathy*/
   public String attack(Adventurer other){
-    int damage = (int)(Math.random()*5)+10;
+    int damage = (int)(Math.random()* (DamageMax - DamageMin + 1))+DamageMin;
     other.applyDamage(damage);
-    restoreSpecial(2);
+    Apathy += 1;
+    DamageMax += 3;
+    DamageMin += 3;
     return this + " attacked "+ other + " and dealt "+ damage +
     " points of damage.";
   }
@@ -53,12 +57,11 @@ public class Rogue extends Adventurer{
   */
   public String specialAttack(Adventurer other){
     if(getSpecial() >= 5){
-      setSpecial(getSpecial()-8);
-      int damage = (int)(Math.random()*5+Math.random()*5)+3;
+      setSpecial(getSpecial()-5);
+      int damage = 75;
       other.applyDamage(damage);
-      return this + " used their "+preferredLanguage+
-      " skills to hack the matrix. "+
-      " This glitched out "+other+" dealing "+ damage +" points of damage.";
+      return this + " hit a critical spot with their dagger. "+
+      " This blew "+other+" out of this world dealing "+ damage +" points of damage.";
     }else{
       return "Not enough Apathy to use the ultimate code. Instead "+attack(other);
     }
