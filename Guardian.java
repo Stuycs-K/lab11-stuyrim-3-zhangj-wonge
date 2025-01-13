@@ -40,29 +40,31 @@ public class Guardian extends Adventurer{
     other.applyDamage(damage);
     restoreSpecial(1);
     return this + " attacked "+ other + " and dealt "+ damage +
-    " points of damage. They then take a sip of their coffee.";
+    " points of damage.";
   }
 
   /*Deal 3-12 damage to opponent, only if Resolve is high enough.
   *Reduces Resolve by 8.
   */
   public String specialAttack(Adventurer other){
-    if(getSpecial() >= 8){
-      setSpecial(getSpecial()-8);
-      int damage = (int)(Math.random()*5+Math.random()*5)+3;
+    if(getSpecial() >= 5){
+      setSpecial(getSpecial()-5);
+      int damage = (int)(Math.random()*16)+25;
       other.applyDamage(damage);
-      return this + " used their "+preferredLanguage+
-      " skills to hack the matrix. "+
-      " This glitched out "+other+" dealing "+ damage +" points of damage.";
+      return this + " used their shield to ram"+other + ". This threw "+other+" out of this world dealing "+ damage +" points of damage.";
+      int accident = (int)(Math.random()*20);
+      if(accident < 5){
+        this.applyDamage(damage);
+        return "Oh no! " + this + " accidentally took " + damage+ " while ramming.";
+      }
     }else{
       return "Not enough Resolve to use the ultimate code. Instead "+attack(other);
     }
-
   }
   /*Restores 5 special to other*/
   public String support(Adventurer other){
-    return "Gives a coffee to "+other+" and restores "
-    + other.restoreSpecial(5)+" "+other.getSpecialName();
+    return "Took damage in place of "+other;
+    restoreSpecial(1);
   }
   /*Restores 6 special and 1 hp to self.*/
   public String support(){
