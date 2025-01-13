@@ -81,7 +81,14 @@ public class Game{
     public static void drawParty(ArrayList<Adventurer> party,int startRow){
 
       /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
-
+      if(startRow > 0){
+      for(int i = 0;i<party.size();i++){
+        drawText(party.get(i).getName(), startRow, i+1);
+        drawText("HP: " + party.get(i).getHP(), startRow, i+1);
+        drawText(party.get(i).getSpecialName() + party.get(i).getSpecial(), startRow, i+1);
+        startRow++;
+      }
+    }
       /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
     }
 
@@ -109,7 +116,7 @@ public class Game{
 
   //Display the party and enemies
   //Do not write over the blank areas where text will appear.
-  //Place the cursor at the place where the user will by typing their input at the end of this method.
+  //Place the cursor at the place where the user will by typing their input at the end of this method. add instance for this one
   public static void drawScreen(){
 
     drawBackground();
