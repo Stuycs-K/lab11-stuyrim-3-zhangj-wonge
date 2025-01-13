@@ -81,7 +81,7 @@ public class Game{
     public static void drawParty(ArrayList<Adventurer> party,int startRow){
 
       /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
-      //YOUR CODE HERE
+
       /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
     }
 
@@ -93,6 +93,13 @@ public class Game{
     // under 25% : red
     // under 75% : yellow
     // otherwise : white
+    if ((double) hp/maxHP < 0.25){
+      Text.colorize(output, Text.RED);
+    }else if((double) hp/maxHP<0.75){
+      Text.colorize(output, Text.YELLOW);
+    }else{
+      Text.colorize(output, Text.WHITE);
+    }
     return output;
   }
 
