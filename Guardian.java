@@ -47,16 +47,17 @@ public class Guardian extends Adventurer{
   *Reduces Resolve by 8.
   */
   public String specialAttack(Adventurer other){
-    if(getSpecial() >= 5){
+    int damage = (int)(Math.random()*16)+25;
+    int accident = (int)(Math.random()*20);
+    if(getSpecial() >= 5 && accident < 5){
       setSpecial(getSpecial()-5);
-      int damage = (int)(Math.random()*16)+25;
       other.applyDamage(damage);
-      return this + " used their shield to ram"+other + ". This threw "+other+" out of this world dealing "+ damage +" points of damage.";
-      int accident = (int)(Math.random()*20);
-      if(accident < 5){
-        this.applyDamage(damage);
-        return "Oh no! " + this + " accidentally took " + damage+ " while ramming.";
-      }
+      return this + " used their shield to ram "+other + ". This threw "+other+" out of this world dealing "+ damage +" points of damage... Oh no! " + this + " accidentally took " + damage+ " while ramming.";
+    }
+    else if(getSpecial() >= 5 && accident < 5){
+      setSpecial(getSpecial()-5);
+      other.applyDamage(damage);
+      return this + " used their shield to ram "+other + ". This threw "+other+" out of this world dealing "+ damage +" points of damage.";
     }else{
       return "Not enough Resolve to use the ultimate code. Instead "+attack(other);
     }
