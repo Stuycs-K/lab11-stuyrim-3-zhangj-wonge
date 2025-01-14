@@ -47,17 +47,10 @@ public class Cleric extends Adventurer{
   *Reduces Grace by 8.
   */
   public String specialAttack(Adventurer other){
-    int damage = (int)(Math.random()*16)+25;
-    int accident = (int)(Math.random()*20);
-    if(getSpecial() >= 5 && accident < 5){
+    if(getSpecial() >= 5){
       setSpecial(getSpecial()-5);
-      other.applyDamage(damage);
-      return this + " used their shield to ram "+other + ". This threw "+other+" out of this world dealing "+ damage +" points of damage... Oh no! " + this + " accidentally took " + damage+ " while ramming.";
-    }
-    else if(getSpecial() >= 5 && accident < 5){
-      setSpecial(getSpecial()-5);
-      other.applyDamage(damage);
-      return this + " used their shield to ram "+other + ". This threw "+other+" out of this world dealing "+ damage +" points of damage.";
+      other.setHP(getmaxHP());
+      return this + " always has " + other + "'s back. " + this + " healed " + other + " back to full health";
     }else{
       return "Not enough Grace to use the ultimate code. Instead "+attack(other);
     }
