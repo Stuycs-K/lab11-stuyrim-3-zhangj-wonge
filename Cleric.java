@@ -71,9 +71,10 @@ public class Cleric extends Adventurer{
     return this + " healed " + other + " adding " + HPneeded + " to their HP. " + other + " is now at " + endHP + " HP.";
   }
   public String support(){
-    int hp = 1;
-    setHP(getHP()+hp);
-    return this+" drinks a coffee to restores "+restoreSpecial(6)+" "
-    + getSpecialName()+ " and "+hp+" HP";
+    int startHealth = this.getHP();
+    int HPneeded = this.getmaxHP() - startHealth;
+    int endHP = startHealth + HPneeded;
+    this.setHP(endHP);
+    return this + " healed themselves adding " + HPneeded + " to their HP. " + this + " is now at " + endHP + " HP.";
   }
 }
