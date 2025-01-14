@@ -10,7 +10,7 @@ public class Cleric extends Adventurer{
   }
 
   public Cleric(String name){
-    this(name, 200);
+    this(name, 150);
   }
 
   public Cleric(){
@@ -36,7 +36,7 @@ public class Cleric extends Adventurer{
 
   /*Deal 2-7 damage to opponent, restores 2 Grace*/
   public String attack(Adventurer other){
-    int damage = (int)(Math.random()*6)+5;
+    int damage = (int)(Math.random()*5)+3;
     other.applyDamage(damage);
     restoreSpecial(1);
     return this + " attacked "+ other + " and dealt "+ damage +
@@ -64,9 +64,12 @@ public class Cleric extends Adventurer{
   }
   /*Restores 5 special to other*/
   public String support(Adventurer other){
-    return "Took damage in place of "+other;
+    int startHealth = other.getHP();
+    int HPneeded = other.getmaxHP() - startHealth;
+    int endHP = startHealth + HPneeded;
+    other.setHP(endHP);
+    return this + " healed " + other + " adding " + HPneeded + " to their HP. " + other + " is now at " + endHP + " HP.";
   }
-  /*Restores 6 special and 1 hp to self.*/
   public String support(){
     int hp = 1;
     setHP(getHP()+hp);
