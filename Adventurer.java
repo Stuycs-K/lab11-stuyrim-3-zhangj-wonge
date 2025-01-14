@@ -2,6 +2,7 @@ import java.util.Random;
 public abstract class Adventurer{
   private String name;
   private int HP,maxHP;
+  private boolean frozen;
 
   //Abstract methods are meant to be implemented in child classes.
   /*
@@ -47,7 +48,7 @@ public abstract class Adventurer{
 
   //hurt or hinder the target adventurer, consume some special resource
   public abstract String specialAttack(Adventurer other);
-
+  
   /*
   standard methods
   */
@@ -92,6 +93,10 @@ public abstract class Adventurer{
     maxHP = newMax;
   }
 
+  public boolean getFrozen(){
+    return frozen;
+  }
+
   //Set Methods
   public void setHP(int health){
     this.HP = health;
@@ -99,5 +104,9 @@ public abstract class Adventurer{
 
   public void setName(String s){
     this.name = s;
+  }
+
+  public void setFrozen(boolean b){
+    this.frozen = b;
   }
 }

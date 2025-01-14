@@ -1,6 +1,6 @@
 public class Guardian extends Adventurer{
   int Resolve, ResolveMax;
-
+  boolean Taunt;
   /*the other constructors ultimately call the constructor
   *with all parameters.*/
   public Guardian(String name, int hp){
@@ -24,6 +24,10 @@ public class Guardian extends Adventurer{
 
   public int getSpecial(){
     return Resolve;
+  }
+
+  public boolean getTaunt(){
+    return Taunt;
   }
 
   public void setSpecial(int n){
@@ -59,7 +63,7 @@ public class Guardian extends Adventurer{
       other.applyDamage(damage);
       return this + " used their shield to ram "+other + ". This threw "+other+" out of this world dealing "+ damage +" points of damage.";
     }else{
-      return "Not enough Resolve to use the ultimate code. Instead "+attack(other);
+      return "Not enough Resolve to use Special Attack. Instead "+attack(other);
     }
   }
   /*Restores 5 special to other*/
@@ -67,6 +71,7 @@ public class Guardian extends Adventurer{
     return "Took damage in place of "+other;
   }
   /*Restores 6 special and 1 hp to self.*/
+  // CURRENTLY PLACEHOLDER
   public String support(){
     int hp = 1;
     setHP(getHP()+hp);
