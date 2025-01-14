@@ -65,7 +65,6 @@ public class Guardian extends Adventurer{
   /*Restores 5 special to other*/
   public String support(Adventurer other){
     return "Took damage in place of "+other;
-    restoreSpecial(1);
   }
   /*Restores 6 special and 1 hp to self.*/
   public String support(){
