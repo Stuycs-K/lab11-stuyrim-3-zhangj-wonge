@@ -23,7 +23,7 @@ public class Rogue extends Adventurer{
     this("Theo");
   }
 
-  /*The next 8 methods are all required because they are abstract:*/
+  /*The next 10 methods are all required because they are abstract:*/
   public String getSpecialName(){
     return "Apathy";
   }
@@ -55,7 +55,7 @@ public class Rogue extends Adventurer{
   public int getDamageMax(){
     return DamageMax;
   }
-  /*Deal 2-7 damage to opponent, restores 2 Apathy*/
+  /*Originally deals 10 - 15 damage to opponent, restores 1 Apathy*/
   public String attack(Adventurer other){
     int damage = (int)(Math.random()* (DamageMax - DamageMin + 1))+DamageMin;
     other.applyDamage(damage);
@@ -66,8 +66,8 @@ public class Rogue extends Adventurer{
     " points of damage.";
   }
 
-  /*Deal 3-12 damage to opponent, only if Apathy is high enough.
-  *Reduces Apathy by 8.
+  /*Deals 75 damage to opponent, only if Apathy is high enough.
+  *Reduces Apathy by 5.
   */
   public String specialAttack(Adventurer other){
     if(getSpecial() >= 5){
@@ -81,13 +81,13 @@ public class Rogue extends Adventurer{
     }
 
   }
-  /*Restores 5 special to other*/
+  /*Restores 1 special to other*/
   public String support(Adventurer other){
     other.restoreSpecial(1);
     return this + " gives "+other+" a little pep talk and restores "
     + other.restoreSpecial(1)+" "+other.getSpecialName();
   }
-  /*Restores 6 special and 1 hp to self.*/
+  /*Restores 2 special.*/
   public String support(){
     restoreSpecial(2);
     return this+" buffs their dagger and restores "+restoreSpecial(2);
