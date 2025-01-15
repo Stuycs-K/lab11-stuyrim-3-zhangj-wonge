@@ -47,7 +47,7 @@ public class Guardian extends Adventurer{
 
   /*Deal 2-7 damage to opponent, restores 2 Resolve*/
   public String attack(Adventurer other){
-    if(!(this.getFrozen())){
+    if(!(this.getFrozen() == true)){
     int damage = (int)(Math.random()*6)+5;
     other.applyDamage(damage);
     restoreSpecial(1);
@@ -62,7 +62,7 @@ public class Guardian extends Adventurer{
   *Reduces Resolve by 5.
   */
   public String specialAttack(Adventurer other){
-    if(!(this.getFrozen())){
+    if(!(this.getFrozen() == true)){
     int damage = (int)(Math.random()*16)+25;
     int accident = (int)(Math.random()*20);
     if(getSpecial() >= 5 && accident < 5){
@@ -83,7 +83,7 @@ public class Guardian extends Adventurer{
   }
   /*Restores 5 special to other*/
   public String support(Adventurer other){
-    if(!(this.getFrozen())){
+    if(!(this.getFrozen() == true)){
     return "Took damage in place of "+other;
   }
   this.setFrozen(false);
@@ -92,7 +92,7 @@ public class Guardian extends Adventurer{
   /*Restores 6 special and 1 hp to self.*/
   // CURRENTLY PLACEHOLDER
   public String support(){
-    if(!(this.getFrozen())){
+    if(!(this.getFrozen() == true)){
     int hp = 1;
     setHP(getHP()+hp);
     return this+" drinks a coffee to restores "+restoreSpecial(6)+" "
