@@ -20,7 +20,7 @@ Make a clear list of features that work/dont work
 # ~~CodeWarrior~~ Rogue Class
 - 75 Health Points
 - 10-15 Damage through Dagger (Thrust)
-- Support increases the chance of 
+- Support restoreSpecial(1)
 - Special cuts through the opponent, dealing 75 damage (Shred)
   - Special points are called **Apathy**
   - Special takes up the max amount of Apathy (5 points)
