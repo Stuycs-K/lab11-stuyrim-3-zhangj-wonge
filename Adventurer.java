@@ -48,7 +48,9 @@ public abstract class Adventurer{
 
   //hurt or hinder the target adventurer, consume some special resource
   public abstract String specialAttack(Adventurer other);
-  
+
+  //hinders self for one turn if frozenStatus is true;
+  public abstract String status();
   /*
   standard methods
   */

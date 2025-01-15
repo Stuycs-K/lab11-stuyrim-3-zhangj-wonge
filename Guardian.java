@@ -38,19 +38,31 @@ public class Guardian extends Adventurer{
     return ResolveMax;
   }
 
+  public String status(){
+    if(this.getFrozen()){
+      return "Currently frozen for one turn!";
+    }
+    return "Not frozen";
+  }
+
   /*Deal 2-7 damage to opponent, restores 2 Resolve*/
   public String attack(Adventurer other){
+    if(!(this.getFrozen())){
     int damage = (int)(Math.random()*6)+5;
     other.applyDamage(damage);
     restoreSpecial(1);
     return this + " attacked "+ other + " and dealt "+ damage +
     " points of damage.";
   }
+  this.setFrozen(false);
+  return "Currently Frozen!";
+  }
 
   /*Deal 3-12 damage to opponent, only if Resolve is high enough.
   *Reduces Resolve by 8.
   */
   public String specialAttack(Adventurer other){
+    if(!(this.getFrozen())){
     int damage = (int)(Math.random()*16)+25;
     int accident = (int)(Math.random()*20);
     if(getSpecial() >= 5 && accident < 5){
@@ -66,16 +78,27 @@ public class Guardian extends Adventurer{
       return "Not enough Resolve to use Special Attack. Instead "+attack(other);
     }
   }
+  this.setFrozen(false);
+  return "Currently Frozen!";
+  }
   /*Restores 5 special to other*/
   public String support(Adventurer other){
+    if(!(this.getFrozen())){
     return "Took damage in place of "+other;
+  }
+  this.setFrozen(false);
+  return "Currently Frozen!";
   }
   /*Restores 6 special and 1 hp to self.*/
   // CURRENTLY PLACEHOLDER
   public String support(){
+    if(!(this.getFrozen())){
     int hp = 1;
     setHP(getHP()+hp);
     return this+" drinks a coffee to restores "+restoreSpecial(6)+" "
     + getSpecialName()+ " and "+hp+" HP";
   }
+  this.setFrozen(false);
+  return "Currently Frozen!";
+}
 }
