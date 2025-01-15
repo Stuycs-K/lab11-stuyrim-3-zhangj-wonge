@@ -93,9 +93,9 @@ public class Guardian extends Adventurer{
   // CURRENTLY PLACEHOLDER
   public String support(){
     if(!(this.getFrozen() == true)){
-    int hp = 1;
+    int hp = 10;
     setHP(getHP()+hp);
-    return this+" drinks a coffee to restores "+restoreSpecial(6)+" "
+    return this+" shields themself to restores "+restoreSpecial(2)+" "
     + getSpecialName()+ " and "+hp+" HP";
   }
   this.setFrozen(false);
