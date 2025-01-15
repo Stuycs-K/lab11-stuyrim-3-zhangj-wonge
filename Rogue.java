@@ -55,8 +55,16 @@ public class Rogue extends Adventurer{
   public int getDamageMax(){
     return DamageMax;
   }
+
+  public String status(){
+    if(this.getFrozen()){
+      return "Currently frozen for one turn!";
+    }
+    return "Not frozen";
+  }
   /*Originally deals 10 - 15 damage to opponent, restores 1 Apathy*/
   public String attack(Adventurer other){
+    if(!(this.getFrozen() == true)){
     int damage = (int)(Math.random()* (DamageMax - DamageMin + 1))+DamageMin;
     other.applyDamage(damage);
     restoreSpecial(1);
@@ -65,11 +73,15 @@ public class Rogue extends Adventurer{
     return this + " attacked "+ other + " and dealt "+ damage +
     " points of damage.";
   }
+  this.setFrozen(false);
+  return "Currently Frozen!";
+  }
 
   /*Deals 75 damage to opponent, only if Apathy is high enough.
   *Reduces Apathy by 5.
   */
   public String specialAttack(Adventurer other){
+    if(!(this.getFrozen() == true)){
     if(getSpecial() >= 5){
       setSpecial(getSpecial()-5);
       int damage = 75;
@@ -79,17 +91,27 @@ public class Rogue extends Adventurer{
     }else{
       return "Not enough Apathy to use the ultimate code. Instead "+attack(other);
     }
-
+  }
+    this.setFrozen(false);
+    return "Currently Frozen!";
   }
   /*Restores 1 special to other*/
   public String support(Adventurer other){
+    if(!(this.getFrozen() == true)){
     other.restoreSpecial(1);
     return this + " gives "+other+" a little pep talk and restores "
     + other.restoreSpecial(1)+" "+other.getSpecialName();
   }
+    this.setFrozen(false);
+    return "Currently Frozen!";
+  }
   /*Restores 2 special.*/
   public String support(){
+    if(!(this.getFrozen() == true)){
     restoreSpecial(2);
     return this+" buffs their dagger and restores "+restoreSpecial(2);
+  }
+    this.setFrozen(false);
+    return "Currently Frozen!";
   }
 }
