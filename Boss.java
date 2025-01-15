@@ -33,6 +33,10 @@ public class Boss extends Adventurer{
     return FrostMax;
   }
 
+  public String status(){
+    return null;
+  }
+
   /*Deal 2-7 damage to opponent, restores 2 Resolve*/
   public String attack(Adventurer other){
     int damage = (int)(Math.random()*10+15);
@@ -46,14 +50,18 @@ public class Boss extends Adventurer{
   *Reduces Resolve by 8.
   */
   public String specialAttack(Adventurer other){
-    return null;
+    other.setFrozen(true);
+    return "froze ally!"; //placeholder
   }
+
   /*Restores 5 special to other*/
   public String support(Adventurer other){
-    return this.getName +"has freezed your party for one turn!";
+    return this.getName() +"has freezed your party for one turn!";
   }
+
   /*Restores 6 special and 1 hp to self.*/
   // gives Golem an extra turn
   public String support(){
+    return null;
   }
 }
