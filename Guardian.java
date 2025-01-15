@@ -17,7 +17,7 @@ public class Guardian extends Adventurer{
     this("Carmack");
   }
 
-  /*The next 8 methods are all required because they are abstract:*/
+  /*The next 5 methods are all required because they are abstract:*/
   public String getSpecialName(){
     return "Resolve";
   }
@@ -38,7 +38,7 @@ public class Guardian extends Adventurer{
     return ResolveMax;
   }
 
-  /*Deal 2-7 damage to opponent, restores 2 Resolve*/
+  /*Deal 3-7 damage to opponent, restores 1 Resolve*/
   public String attack(Adventurer other){
     int damage = (int)(Math.random()*6)+5;
     other.applyDamage(damage);
@@ -47,8 +47,8 @@ public class Guardian extends Adventurer{
     " points of damage.";
   }
 
-  /*Deal 3-12 damage to opponent, only if Resolve is high enough.
-  *Reduces Resolve by 8.
+  /*Deal 25 - 40 damage to opponent, only if Resolve is high enough. 25% chance that the damage inflicts on themself.
+  *Reduces Resolve by 5.
   */
   public String specialAttack(Adventurer other){
     int damage = (int)(Math.random()*16)+25;
@@ -66,7 +66,7 @@ public class Guardian extends Adventurer{
       return "Not enough Resolve to use Special Attack. Instead "+attack(other);
     }
   }
-  /*Restores 5 special to other*/
+  /*%change that the Guardian will take damage for other*/
   public String support(Adventurer other){
     return "Took damage in place of "+other;
   }
