@@ -1,9 +1,12 @@
 import java.util.Random;
+import java.util.ArrayList;
 public abstract class Adventurer{
   private String name;
   private int HP,maxHP;
   private boolean frozen;
-
+  private boolean taunt;
+  private ArrayList<Adventurer> allies;
+  private ArrayList<Adventurer> foes;
   //Abstract methods are meant to be implemented in child classes.
   /*
   all adventurers must have a custom special
@@ -99,6 +102,10 @@ public abstract class Adventurer{
     return frozen;
   }
 
+  public boolean getTaunt(){
+    return taunt;
+  }
+
   //Set Methods
   public void setHP(int health){
     this.HP = health;
@@ -110,5 +117,9 @@ public abstract class Adventurer{
 
   public void setFrozen(boolean b){
     this.frozen = b;
+  }
+
+  public void setTaunt(boolean b){
+    this.taunt = b;
   }
 }

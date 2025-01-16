@@ -1,6 +1,5 @@
 public class Guardian extends Adventurer{
   int Resolve, ResolveMax;
-  boolean Taunt;
   /*the other constructors ultimately call the constructor
   *with all parameters.*/
   public Guardian(String name, int hp){
@@ -26,10 +25,6 @@ public class Guardian extends Adventurer{
     return Resolve;
   }
 
-  public boolean getTaunt(){
-    return Taunt;
-  }
-
   public void setSpecial(int n){
     Resolve = n;
   }
@@ -38,11 +33,18 @@ public class Guardian extends Adventurer{
     return ResolveMax;
   }
 
-  public String status(){
-    if(this.getFrozen()){
+  public String status(){//arraylist for status effects
+    if(this.getFrozen() == true){
       return "Currently frozen for one turn!";
+    }else{
+      return "Not frozen.";
     }
-    return "Not frozen";
+
+    if(this.getTaunt() == true){
+      return "Currently taunting! (targeted by enemy)";
+    }else{
+      return "Not taunting.";
+    }
   }
 
   /*Deal 2-7 damage to opponent, restores 2 Resolve*/

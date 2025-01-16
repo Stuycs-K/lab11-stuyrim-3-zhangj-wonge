@@ -39,6 +39,7 @@ public class Boss extends Adventurer{
 
   /*Deal 2-7 damage to opponent, restores 2 Resolve*/
   public String attack(Adventurer other){
+    //taunt add here use arraylist of adventurers to check which adventurer has taunt status and target them
     int damage = (int)(Math.random()*10+15);
     other.applyDamage(damage);
     restoreSpecial(1);
@@ -56,6 +57,7 @@ public class Boss extends Adventurer{
 
   /*Restores 5 special to other*/
   public String support(Adventurer other){
+    other.setFrozen(true);
     return this.getName() +"has freezed your party for one turn!";
   }
 

@@ -35,7 +35,7 @@ public class Cleric extends Adventurer{
   }
 
   public String status(){
-    if(this.getFrozen()){
+    if(this.getFrozen()==true){
       return "Currently frozen for one turn!";
     }
     return "Not frozen";
