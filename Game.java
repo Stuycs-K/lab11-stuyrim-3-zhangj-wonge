@@ -69,10 +69,10 @@ public class Game{
       Random rand = new Random();
         int choice = rand.nextInt(3); // Adjust for the number of subclasses
         Adventurer[] adventurers = {
+            new Rogue(),
             new Guardian(),
-            new Boss(),
             new Cleric(),
-            new Rogue()
+            new Boss()
         };
         return adventurers[rand.nextInt(adventurers.length)];
     }
