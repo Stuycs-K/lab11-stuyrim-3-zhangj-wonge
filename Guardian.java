@@ -39,12 +39,6 @@ public class Guardian extends Adventurer{
     }else{
       return "Not frozen.";
     }
-
-    if(this.getTaunt() == true){
-      return "Currently taunting! (targeted by enemy)";
-    }else{
-      return "Not taunting.";
-    }
   }
 
   /*Deal 2-7 damage to opponent, restores 2 Resolve*/

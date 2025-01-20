@@ -51,15 +51,24 @@ public class Game{
   */
   public static void TextBox(int row, int col, int width, int height, String text){
     /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
-    String curr = text.substring(0,width);
-    int rowCount=1;
-    for(int i = 0; i<text.length(); i++){
-      if(rowCount<height){
-        drawText(curr,row,col);
-        curr=text.substring(width).substring(0,width);
-        rowCount++;
-      }
-    }
+	String[] lineS = text.split("\n");
+	for(int i = 0; i<height;i++){
+		if(i<lineS.length){
+			String line = lineS[i];
+			if(line.length()<width){
+				while(line.length()<width){
+					line += " ";
+				}
+			}
+			drawText(line.substring(0,width), row+i, col);
+		}else{
+			String blankL = "";
+			while(blankL.length()<width){
+				blankL += " ";
+			}
+			drawText(blankL,row+i,col);
+		}
+	}
     /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
   }
 
@@ -83,10 +92,10 @@ public class Game{
       /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
       if(startRow > 0){
       for(int i = 0;i<party.size();i++){
-        drawText(party.get(i).getName(), startRow, i+1);
-        drawText("HP: " + party.get(i).getHP(), startRow, i+1);
-        drawText(party.get(i).getSpecialName() + party.get(i).getSpecial(), startRow, i+1);
-        startRow++;
+        Adventurer currentA = party.get(i);
+		TextBox(startRow, i * 20 + 3, 20, 4, currentA.getName() + 
+		"\nHP: " + colorByPercent(currentA.getHP(), currentA.getmaxHP()) + "\n" 
+		+ currentA.getSpecialName()+": "+ currentA.getSpecial());
       }
     }
       /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
@@ -101,13 +110,12 @@ public class Game{
     // under 75% : yellow
     // otherwise : white
     if ((double) hp/maxHP < 0.25){
-      Text.colorize(output, Text.RED);
+      return Text.colorize(output, Text.RED);
     }else if((double) hp/maxHP<0.75){
-      Text.colorize(output, Text.YELLOW);
+      return Text.colorize(output, Text.YELLOW);
     }else{
-      Text.colorize(output, Text.WHITE);
+      return Text.colorize(output, Text.WHITE);
     }
-    return output;
   }
 
 
@@ -117,13 +125,17 @@ public class Game{
   //Display the party and enemies
   //Do not write over the blank areas where text will appear.
   //Place the cursor at the place where the user will by typing their input at the end of this method. add instance for this one
-  public static void drawScreen(){
+  public static void drawScreen(ArrayList<Adventurer> party, ArrayList<Adventurer> enemies){
 
     drawBackground();
 
     //draw player party
+	drawParty(party, 20);
 
     //draw enemy party
+	drawParty(enemies, 2);
+	
+	Text.go(HEIGHT, 1);
 
   }
 
@@ -158,14 +170,16 @@ public class Game{
     //start with 1 boss and modify the code to allow 2-3 adventurers later.
     ArrayList<Adventurer>enemies = new ArrayList<Adventurer>();
     /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
-    //YOUR CODE HERE
+    enemies.add(new Boss("Frost Golem"));
     /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
 
     //Adventurers you control:
     //Make an ArrayList of Adventurers and add 2-4 Adventurers to it.
     ArrayList<Adventurer> party = new ArrayList<>();
     /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
-    //YOUR CODE HERE
+    party.add(new Cleric("Cleric"));
+	party.add(new Guardian("Guardian"));
+	party.add(new Rogue("Rogue"));
     /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
 
     boolean partyTurn = true;
@@ -177,7 +191,7 @@ public class Game{
     //Draw the window border
 
     //You can add parameters to draw screen!
-    drawScreen();//initial state.
+    drawScreen(party, enemies);//initial state.
 
     //Main loop
 
@@ -263,7 +277,7 @@ public class Game{
       }
 
       //display the updated screen after input has been processed.
-      drawScreen();
+      drawScreen(party, enemies);
 
 
     }//end of main game loop
