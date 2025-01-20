@@ -13,7 +13,7 @@ public class Guardian extends Adventurer{
   }
 
   public Guardian(){
-    this("Carmack");
+    this("Angel");
   }
 
   /*The next 5 methods are all required because they are abstract:*/
@@ -34,11 +34,22 @@ public class Guardian extends Adventurer{
   }
 
   public String status(){//arraylist for status effects
+    String status = "";
     if(this.getFrozen() == true){
-      return "Currently frozen for one turn!";
+      status += "Currently frozen for one turn!\n";
     }else{
-      return "Not frozen.";
+      status += "Not frozen.\n";
     }
+<<<<<<< HEAD
+=======
+
+    if(this.getTaunt() == true){
+      status += "Currently taunting! (targeted by enemy)\n";
+    }else{
+      status += "Not taunting.\n";
+    }
+    return status;
+>>>>>>> 5f875f041bd563fae787c359afed7b00f8024367
   }
 
   /*Deal 2-7 damage to opponent, restores 2 Resolve*/
