@@ -178,30 +178,19 @@ public class Game{
     //start with 1 boss and modify the code to allow 2-3 adventurers later.
     ArrayList<Adventurer>enemies = new ArrayList<Adventurer>();
     /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
-<<<<<<< HEAD
     enemies.add(new Boss("Frost Golem"));
-=======
-    Adventurer boss = new Boss();
-    enemies.add(boss);
->>>>>>> 5f875f041bd563fae787c359afed7b00f8024367
     /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
 
     //Adventurers you control:
     //Make an ArrayList of Adventurers and add 2-4 Adventurers to it.
     ArrayList<Adventurer> party = new ArrayList<>();
     /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
-<<<<<<< HEAD
-    party.add(new Cleric("Cleric"));
-	party.add(new Guardian("Guardian"));
-	party.add(new Rogue("Rogue"));
-=======
     Adventurer Rogue = new Rogue();
     party.add(Rogue);
     Adventurer Guardian = new Guardian();
     party.add(Guardian);
     Adventurer Cleric = new Cleric();
     party.add(Cleric);
->>>>>>> 5f875f041bd563fae787c359afed7b00f8024367
     /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
 
     boolean partyTurn = true;
