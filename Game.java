@@ -65,16 +65,34 @@ public class Game{
   */
   public static void TextBox(int row, int col, int width, int height, String text){
     /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
-	String[] lineS = text.split("\n");
-	for(int i = 0; i<height;i++){
-		if(i<lineS.length){
-			String line = lineS[i];
-			if(line.length()<width){
-				while(line.length()<width){
-					line += " ";
-				}
+	String[] lineS = text.split(" ");
+	String[] otherL = new String[height];
+	int currentL = 0;
+	String currentText = "";
+	for(String word:lineS){
+		if(currentText.length()+word.length() + 1<=width){
+			if(!currentText.isEmpty()){
+				currentText+=" ";
 			}
-			drawText(line.substring(0,width), row+i, col);
+			currentText+=word;
+		}else{
+			if(currentL < height){
+			otherL[currentL] = currentText;
+			currentL++;
+		}
+		currentText = word;
+	}
+	}
+	if(currentL<height){
+		otherL[currentL] = currentText;
+	}
+	for(int i = 0;i<height;i++){
+		if(i<otherL.length&&otherL[i] != null){
+			String line = otherL[i];
+			while(line.length()<width){
+				line+=" ";
+			}
+			drawText(line.substring(0,width),row+i,col);
 		}else{
 			String blankL = "";
 			while(blankL.length()<width){
@@ -113,12 +131,17 @@ public class Game{
 
       /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
       if(startRow > 0){
-      for(int i = 0;i<party.size();i++){
-        Adventurer currentA = party.get(i);
-		TextBox(startRow, i * 20 + 3, 20, 4, currentA.getName() + 
-		"\nHP: " + colorByPercent(currentA.getHP(), currentA.getmaxHP()) + "\n" 
-		+ currentA.getSpecialName()+": "+ currentA.getSpecial());
-      }
+		  String[] rowData = new String[3];
+		  for(int i=0;i<party.size();i++){
+			  Adventurer currentA = party.get(i);
+			  int col = (80/party.size())*(i+1)-(80/party.size()-2);
+			  rowData[0] = currentA.getName();
+			  rowData[1] = "HP: " + colorByPercent(currentA.getHP(),currentA.getmaxHP());
+			  rowData[2]=currentA.getSpecialName() +": " + currentA.getSpecial();
+			  for(int j = 0;j<3;j++){
+				  drawText(rowData[j], startRow+j,col);
+			  }
+		  }
     }
       /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
     }
@@ -220,7 +243,7 @@ public class Game{
 
     //display this prompt at the start of the game.
     String preprompt = "Enter command for "+party.get(whichPlayer)+": attack/special/quit";
-    TextBox(31,1,WIDTH,1,preprompt);
+    TextBox(7,2,15,5,preprompt);
     while(! (input.equalsIgnoreCase("q") || input.equalsIgnoreCase("quit"))){
       //Read user input
       input = userInput(in);
