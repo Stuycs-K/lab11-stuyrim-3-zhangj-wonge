@@ -170,7 +170,7 @@ public class Game{
     //Clear and initialize
     Text.hideCursor();
     Text.clear();
-
+    drawBackground();
 
     //Things to attack:
     //Make an ArrayList of Adventurers and add 1-3 enemies to it.
@@ -208,7 +208,7 @@ public class Game{
 
     //display this prompt at the start of the game.
     String preprompt = "Enter command for "+party.get(whichPlayer)+": attack/special/quit";
-
+    TextBox(31,1,81,1,preprompt);
     while(! (input.equalsIgnoreCase("q") || input.equalsIgnoreCase("quit"))){
       //Read user input
       input = userInput(in);
@@ -218,23 +218,30 @@ public class Game{
 
       //display event based on last turn's input
       if(partyTurn){
-
+        Adventurer current = party.get(whichPlayer);
+        String result="";
         //Process user input for the last Adventurer:
         if(input.equals("attack") || input.equals("a")){
           /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
-          //YOUR CODE HERE
+          Adventurer target = enemies.get(whichOpponent);
+          result = current.attack(target);
+          TextBox(28,1,WIDTH,1,result);
           /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
         }
         else if(input.equals("special") || input.equals("sp")){
           /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
-          //YOUR CODE HERE
+          Adventurer target = enemies.get(whichOpponent);
+          result = current.specialAttack(target);
+          TextBox(28,1,WIDTH,1,result);
           /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
         }
         else if(input.startsWith("su ") || input.startsWith("support ")){
           //"support 0" or "su 0" or "su 2" etc.
           //assume the value that follows su  is an integer.
           /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
-          //YOUR CODE HERE
+          Adventurer target = enemies.get((whichPlayer+1)%party.size());
+          result = current.specialAttack(target);
+          TextBox(28,1,WIDTH,1,result);
           /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
         }
 
@@ -247,13 +254,13 @@ public class Game{
           //This is a player turn.
           //Decide where to draw the following prompt:
           String prompt = "Enter command for "+party.get(whichPlayer)+": attack/special/quit";
-
+          TextBox(31,1,81,1,prompt);
 
         }else{
           //This is after the player's turn, and allows the user to see the enemy turn
           //Decide where to draw the following prompt:
           String prompt = "press enter to see monster's turn";
-
+          TextBox(31,1,81,1,prompt);
           partyTurn = false;
           whichOpponent = 0;
         }
@@ -265,14 +272,20 @@ public class Game{
         //enemy attacks a randomly chosen person with a randomly chosen attack.z`
         //Enemy action choices go here!
         /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
-        //YOUR CODE HERE
+        Adventurer currentEnemy = enemies.get(whichOpponent);
         /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
-
-
+        Adventurer target = party.get(new Random().nextInt(party.size()));
+        String result = "";
+        if(new Random().nextBoolean()){
+          result = currentEnemy.attack(target);
+        }else{
+          result = currentEnemy.specialAttack(target);
+        }
+        TextBox(28,1,WIDTH,1,result);
         //Decide where to draw the following prompt:
         String prompt = "press enter to see next turn";
-
-        whichOpponent++;
+        TextBox(31,1,81,1,prompt);
+        whichOpponent = (whichOpponent+1)%enemies.size();
 
       }//end of one enemy.
 
@@ -285,6 +298,7 @@ public class Game{
         partyTurn=true;
         //display this prompt before player's turn
         String prompt = "Enter command for "+party.get(whichPlayer)+": attack/special/quit";
+        TextBox(31,1,81,1,prompt);
       }
 
       //display the updated screen after input has been processed.
